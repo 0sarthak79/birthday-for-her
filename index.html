@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday my love ❤️❤️</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#fff8fb;
+  --bg2:#ffeef6;
+  --accent:#ff6b9a;
+  --text:#3a2940;
+  --muted:#6b5e6f;
+}
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Montserrat;
+  color:var(--text);
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  overflow-x:hidden;
+}
+
+/* ========== LOCKSCREEN ========== */
+#giftLock{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,#fff2f6,#ffe6ef);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  transition:opacity 1s ease;
+}
+.gift-card{
+  background:white;
+  padding:40px 34px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.15);
+  animation:popIn 0.8s ease forwards;
+}
+@keyframes popIn{
+  from{transform:scale(.9);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+.gift-card h2{
+  font-family:'Playfair Display';
+  color:var(--accent);
+  margin-bottom:10px;
+}
+.gift-card p{
+  color:var(--muted);
+  margin-bottom:24px;
+}
+.gift-card button{
+  padding:12px 28px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(90deg,#ff6b9a,#ff9ab4);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* ========== GLOW ========== */
+#glow{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at center,
+    rgba(255,107,154,.35),
+    rgba(255,107,154,.15),
+    transparent 70%);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 2s ease;
+  z-index:5;
+}
+body.revealed #glow{opacity:1}
+
+/* ========== MAIN CARD ========== */
+.wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+}
+
+.card{
+  max-width:860px;
+  width:100%;
+  background:white;
+  border-radius:22px;
+  box-shadow:0 10px 40px rgba(0,0,0,.1);
+  padding:60px 32px 64px;
+  text-align:center;
+}
+
+/* animations (locked until revealed) */
+.photo, .title, .message p{
+  opacity:0;
+  transform:translateY(12px);
+}
+
+body.revealed .photo{
+  animation:fadeUp 1.2s ease forwards;
+}
+body.revealed .title{
+  animation:fadeUp 1s ease forwards;
+  animation-delay:.5s;
+}
+body.revealed .message p:nth-child(1){animation:fadeUp .9s ease forwards .9s}
+body.revealed .message p:nth-child(2){animation:fadeUp .9s ease forwards 1.7s}
+body.revealed .message p:nth-child(3){animation:fadeUp .9s ease forwards 2.5s}
+body.revealed .message p:nth-child(4){
+  animation:fadeUp .9s ease forwards 3.3s;
+  color:var(--accent);
+  font-weight:600;
+}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:none}
+}
+
+.photo{
+  width:260px;height:260px;
+  border-radius:50%;
+  overflow:hidden;
+  border:8px solid white;
+  box-shadow:0 14px 40px rgba(0,0,0,.2);
+  margin:0 auto 26px;
+}
+.photo img{width:100%;height:100%;object-fit:cover}
+
+.title{
+  font-family:'Playfair Display';
+  font-size:42px;
+  color:var(--accent);
+}
+
+.message{
+  font-size:18px;
+  line-height:1.7;
+  max-width:620px;
+  margin:0 auto;
+}
+
+/* ========== MEMORY WALL ========== */
+.memory-wall{
+  display:flex;
+  justify-content:center;
+  padding:80px 0;
+}
+.wall{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  position:relative;
+}
+.wall::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-40px;
+  bottom:-40px;
+  width:3px;
+  background:linear-gradient(180deg,transparent,rgba(255,107,154,.35),transparent);
+  transform:translateX(-50%);
+}
+.wall img{
+  width:220px;
+  border-radius:16px;
+  box-shadow:0 14px 40px rgba(0,0,0,.18);
+  transform:rotate(-2deg);
+  background:white;
+  padding:6px;
+}
+.wall img:nth-child(even){transform:rotate(2deg)}
+
+/* ========== PLAYLIST ========== */
+.playlist-section{
+  padding:70px 16px 90px;
+  display:flex;
+  justify-content:center;
+}
+.playlist-card{
+  max-width:720px;
+  width:100%;
+  background:white;
+  border-radius:18px;
+  padding:12px; /* was 18px */
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+
+.playlist-title{
+  text-align:center;
+  color:var(--accent);
+  font-weight:600;
+  margin-bottom:14px;
+}
+
+/* mobile */
+@media(max-width:768px){
+  .photo{width:200px;height:200px}
+  .title{font-size:34px}
+}
+
+/* ===== MOBILE REFINEMENT ===== */
+@media (max-width: 520px){
+
+  body{
+    background:linear-gradient(180deg,#fff4fa,#ffe6f2);
+  }
+
+  .wrap{
+    padding:24px 14px;
+  }
+
+  .card.single{
+    border-radius:22px;
+    padding:36px 18px 42px;
+    box-shadow:0 16px 50px rgba(0,0,0,0.14);
+  }
+
+  .photo{
+    width:180px;
+    height:180px;
+    margin-bottom:18px;
+    box-shadow:0 10px 26px rgba(0,0,0,0.2);
+  }
+
+  .title{
+    font-size:30px;
+    line-height:1.15;
+    margin-top:6px;
+  }
+
+  .message{
+    font-size:15.5px;
+    line-height:1.75;
+    margin-top:16px;
+    padding:0 6px;
+  }
+
+  .message p{
+    margin-bottom:14px;
+  }
+
+  /* memory wall tighter on phone */
+  .memory-wall{
+    padding:30px 0 60px;
+  }
+
+  .wall img{
+    width:200px;
+  }
+
+  /* playlist card */
+  .playlist-section{
+    padding:40px 12px 70px;
+  }
+
+  .playlist-card{
+    padding:10px;
+    border-radius:16px;
+  }
+
+  .playlist-title{
+    font-size:14px;
+    margin-bottom:10px;
+  }
+
+  iframe{
+    height:352px;
+  }
+}
+#giftLock .gift-card h2{
+  font-family: 'Libre Baskerville', serif;
+  font-size: 34px;
+  letter-spacing: 0.4px;
+}
+/* ===== ENTRY SCREEN MOBILE FIX ===== */
+@media (max-width: 520px){
+
+  #giftLock{
+    padding: 24px 14px;
+  }
+
+  #giftLock .gift-card{
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+    border-radius: 22px;
+    padding: 36px 22px 40px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.18);
+  }
+
+  #giftLock .gift-card h2{
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  #giftLock .gift-card p{
+    font-size: 14px;
+    margin-bottom: 26px;
+  }
+
+  #giftLock .gift-card button{
+    padding: 14px 34px;
+    font-size: 15px;
+    border-radius: 999px;
+  }
+}
+body.lock-scroll{
+  overflow: hidden;
+}
+/* ===== EDGE DECORATIONS ===== */
+.decor{
+  position:fixed;
+  top:0;
+  bottom:0;
+  width:90px;
+  pointer-events:none;
+  z-index:2;
+}
+
+.decor-left{left:0}
+.decor-right{right:0}
+
+/* balloons */
+.balloon{
+  position:absolute;
+  bottom:-120px;
+  width:44px;
+  height:56px;
+  border-radius:50% 50% 45% 45%;
+  opacity:0.75;
+  animation:floatUp linear infinite;
+}
+
+.balloon::after{
+  content:"";
+  position:absolute;
+  bottom:-18px;
+  left:50%;
+  width:2px;
+  height:20px;
+  background:rgba(0,0,0,0.15);
+  transform:translateX(-50%);
+}
+
+/* colors */
+.balloon.pink{
+  background:radial-gradient(circle at 30% 30%, #ffd1e1, #ff6b9a);
+}
+.balloon.peach{
+  background:radial-gradient(circle at 30% 30%, #ffe2d4, #ff9a76);
+}
+.balloon.lavender{
+  background:radial-gradient(circle at 30% 30%, #efe6ff, #cdb4db);
+}
+
+/* positions & timing */
+.decor-left .balloon:nth-child(1){
+  left:14px;
+  animation-duration:22s;
+}
+.decor-left .balloon:nth-child(2){
+  left:40px;
+  animation-duration:26s;
+  animation-delay:4s;
+}
+.decor-left .balloon:nth-child(3){
+  left:22px;
+  animation-duration:30s;
+  animation-delay:8s;
+}
+
+.decor-right .balloon:nth-child(1){
+  right:14px;
+  animation-duration:24s;
+}
+.decor-right .balloon:nth-child(2){
+  right:38px;
+  animation-duration:28s;
+  animation-delay:6s;
+}
+.decor-right .balloon:nth-child(3){
+  right:20px;
+  animation-duration:32s;
+  animation-delay:10s;
+}
+
+/* floating animation */
+@keyframes floatUp{
+  0%{
+    transform:translateY(0);
+    opacity:0;
+  }
+  10%{opacity:0.7}
+  100%{
+    transform:translateY(-110vh);
+    opacity:0;
+  }
+}
+
+/* mobile subtle */
+@media(max-width:768px){
+  .decor{
+    width:60px;
+    opacity:0.5;
+  }
+  .balloon{
+    width:34px;
+    height:44px;
+  }
+}
+
+
+</style>
+</head>
+
+<body class="lock-scroll">
+
+  <!-- DECORATIONS -->
+<div class="decor decor-left">
+  <span class="balloon pink"></span>
+  <span class="balloon peach"></span>
+  <span class="balloon lavender"></span>
+</div>
+
+<div class="decor decor-right">
+  <span class="balloon peach"></span>
+  <span class="balloon pink"></span>
+  <span class="balloon lavender"></span>
+</div>
+
+
+<!-- LOCK -->
+<div id="giftLock">
+  <div class="gift-card">
+    <h2>I made a gift for you ❤️</h2>
+    <p>Something from my heart</p>
+    <button id="openGift">Open</button>
+  </div>
+</div>
+
+<div id="glow"></div>
+
+<!-- MAIN -->
+<div class="wrap">
+  <div class="card">
+
+    <div class="photo">
+      <img src="image.png">
+    </div>
+
+    <h1 class="title">Happy 18th Birthday 💗</h1>
+
+    <div class="message">
+
+  <p>
+    <strong>Happy 18th Birthday my love ❤️</strong>
+  </p>
+
+  <p>
+    Mujhe pata hai pichle kuch saal kaafi mushkil rahe hai
+    aur bohot si cheeze aapke control mein nahi thi.
+    But trust me, yeh saal special hai.
+  </p>
+
+  <p>
+    You are finally 18 now and you're an adult.
+    Yeh ek tarike se life ki nayi shuruat hai,
+    aur is nayi shuruat mein mai hu aapke saath
+    aur hamesha rahunga.
+  </p>
+
+  <p>
+    Chahe situation kaisi bhi ho,
+    hum milkar saath mein handle karenge.
+    Mujhe yakeen hai ki yeh saal
+    pichle saalo se bohot better jayega
+    kyunki ab hum saath mein hai.
+  </p>
+
+  <p style="font-weight:600; color:#ff6b9a">
+    Happy Birthday Kaaju 😝
+  </p>
+
+</div>
+
+
+  </div>
+</div>
+
+<div class="memory-wall">
+  <div class="wall">
+    <img src="fav1.jpg">
+    <img src="fav2.jpg">
+    <img src="fav3.jpg">
+    <img src="fav4.png">
+  </div>
+</div>
+
+<div class="playlist-section">
+  <div class="playlist-card">
+    <p class="playlist-title">I made this playlist for you 🎧💗</p>
+    <iframe
+  src="https://open.spotify.com/embed/playlist/50pzqcoYstfMXzWYU6g57Z"
+  width="100%"
+  height="352"
+  style="border-radius:12px; border:none;"
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+  loading="lazy">
+</iframe>
+
+  </div>
+</div>
+
+<script>
+  /* FORCE PAGE TO START FROM TOP */
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
+window.onload = function () {
+  window.scrollTo(0, 0);
+};
+
+document.getElementById("openGift").onclick = ()=>{
+  document.getElementById("giftLock").style.opacity="0";
+  setTimeout(()=>{
+    document.getElementById("giftLock").style.display="none";
+    document.body.classList.add("revealed");
+  },900);
+};
+
+/* ===== UNLOCK SCROLL AFTER LETTER ===== */
+setTimeout(()=>{
+  document.body.classList.remove("lock-scroll");
+}, 4600);
+
+</script>
+
+</body>
+</html>
