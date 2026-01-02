@@ -24,6 +24,8 @@ body{
   overflow:hidden;
   background-size:100% 200%;
   animation:bgBreath 18s ease-in-out infinite alternate;
+  overflow-x:hidden;
+  overflow-y:hidden;
 }
 
 @keyframes bgBreath{
@@ -33,12 +35,13 @@ body{
 
 /* ===== STAGE ===== */
 .stage{
-  height:100vh;
+  min-height:100svh;          /* mobile safe viewport */
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
+  padding:20px 14px;          /* breathing space ALL SIDES */
 }
+
 
 /* ===== CARD ===== */
 .card{
@@ -60,6 +63,12 @@ body{
   transform:none;
   z-index:2;
 }
+
+.card{
+  max-height:calc(100svh - 40px); /* never exceed screen */
+  overflow:hidden;
+}
+
 
 /* ===== BREATHING GLOW ===== */
 body.revealed .card.active{
@@ -233,6 +242,41 @@ body.revealed .edge{
 .edge.right .balloon:nth-child(2){
   right:44px;
   animation-delay:6s;
+}
+
+@media (max-width:520px){
+
+  body{
+    padding:0;
+  }
+
+  .card{
+    width:100%;
+    padding:28px 18px 34px;
+    border-radius:22px;
+  }
+
+  .photo{
+    width:165px;
+    height:165px;
+    margin-bottom:14px;
+  }
+
+  .title{
+    font-size:27px;
+    line-height:1.2;
+    margin-bottom:12px;
+  }
+
+  .message p{
+    font-size:15px;
+    line-height:1.65;
+    margin-bottom:10px;
+  }
+
+  .btn-row{
+    margin-top:18px;
+  }
 }
 
 </style>
