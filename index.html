@@ -68,7 +68,27 @@ body{
   max-height:calc(100svh - 40px); /* never exceed screen */
   overflow:hidden;
 }
+.card{
+  max-height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+}
 
+/* content scrolls */
+.card-content{
+  overflow-y: auto;
+  padding-right: 6px;
+  flex: 1;
+}
+
+/* buttons always visible */
+.btn-row{
+  margin-top: 20px;
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding-top: 16px;
+}
 
 /* ===== BREATHING GLOW ===== */
 body.revealed .card.active{
@@ -316,7 +336,7 @@ body.revealed .edge{
 <div class="card">
   <div class="photo"><img src="image.png"></div>
   <h1 class="title">Happy 18th Birthday 💗</h1>
-
+<div class="card-content">
   <div class="message">
     <p><strong>Happy 18th Birthday my love ❤️</strong></p>
 
@@ -343,7 +363,7 @@ body.revealed .edge{
 
     <p>Happy Birthday Kaaju 😝</p>
   </div>
-
+</div>
   <div class="btn-row">
     <button class="back-btn">← Back</button>
     <button class="next-btn">Next →</button>
